@@ -25,7 +25,6 @@ long __geteuid();
 size_t __strlen(const char *s);
 void *__malloc(size_t len);
 void __strncpy(char *restrict dest, const char *src, size_t n);
-void *__memset(void *s, int c, size_t n);
 
 extern unsigned long end_vx;
 void real_start();
@@ -189,15 +188,6 @@ void __strncpy(char *restrict dest, const char *src, size_t n)
 	while(n-- && *src != '\0')
 		*dest++ = *src++;
 	*dest  = '\0';
-}
-
-void *__memset(void *s, int c, size_t n)
-{
-	uint8_t *ptr = (uint8_t *)s;
-	while(n--)
-		*ptr++ = c & 0xff;
-
-	return s;
 }
 
 int __strncmp(const char *s1, const char *s2, size_t n)
