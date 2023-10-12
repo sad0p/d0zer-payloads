@@ -349,14 +349,14 @@ char *get_self_path()
 		type name(arg1_type arg1, arg2_type arg2, arg3_type arg3) { \
                 type ret; \
                 __asm__ __volatile__( \
-                "movq $89, %%rax\n" \
-                "movq %0, %%rdi\n" \
-                "movq %1, %%rsi\n" \
-                "movq %2, %%rdx\n" \
-                "syscall" \
-                : \
-                : "g" (arg1), "g" (arg2), "g" (arg3) \
-                : "%rax", "%rdi", "%rsi", "%rdx" \
+                				"movq $89, %%rax\n" \
+                				"movq %0, %%rdi\n" \
+                				"movq %1, %%rsi\n" \
+                				"movq %2, %%rdx\n" \
+                				"syscall" \
+                				: \
+                				: "g" (arg1), "g" (arg2), "g" (arg3) \
+                				: "%rax", "%rdi", "%rsi", "%rdx" \
         		); \
         		__load_syscall_ret(ret); \
         		return ret; \
@@ -366,13 +366,13 @@ char *get_self_path()
 	type name(arg1_type arg1, arg2_type arg2) { \
 		type ret; \
         __asm__ __volatile__( \
-		"movq $21, %%rax\n" \
-		"movq %0, %%rdi\n" \
-		"movq $1, %%rsi\n" \
-		"syscall" \
-		: \
-		: "g" (arg1), "g" (arg2) \
-		: "%rax", "%rdi", "%rsi" \
+						"movq $21, %%rax\n" \
+						"movq %0, %%rdi\n" \
+						"movq $1, %%rsi\n" \
+						"syscall" \
+						: \
+						: "g" (arg1), "g" (arg2) \
+						: "%rax", "%rdi", "%rsi" \
 		); \
 		__load_syscall_ret(ret); \
 		return ret; \
@@ -382,11 +382,11 @@ char *get_self_path()
 	type name() { \
     type ret; \
 	__asm__ __volatile__( \
-    "movq $107, %%rax\n" \
-	"syscall" \
-	: \
-	: \
-	: "%rax" \
+    				"movq $107, %%rax\n" \
+					"syscall" \
+					: \
+					: \
+					: "%rax" \
 	); \
     __load_syscall_ret(ret); \
 	return ret; \
