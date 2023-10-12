@@ -10,8 +10,6 @@
 #include <linux/limits.h>
 
 #define XOR_KEY 0x01
-#define STDOUT STDOUT_FILENO
-
 
 long __open(const char *pathname, int flags, int mode);
 long __write(int fd, const void *buf, size_t count);
@@ -86,7 +84,8 @@ void real_start()
 
 	write_payload(self_mem, f_end, f_info.st_size - f_end);
 	clean_up:
-		__close(self_fd);
+		if(self_fd > 0)
+			__close(self_fd);
 		if(self_path != NULL)
 			__munmap(self_path, PATH_MAX);
 		if(self_mem != NULL)
